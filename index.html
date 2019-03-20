@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset=utf-8 />
-	<title></title>
+	<title>Nolichucky River</title>
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 	<link rel='icon' href='https://newmapsplus.github.io/favicon.ico' type='image/x-icon' />
 
@@ -229,10 +229,12 @@
 			ext: 'png'
 		});
 
-		$.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
+		tiles.addTo(map);
+
+		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
 			// the data loaded from the file is accessible here within this function scope!
 			// create GeoJson layer and apply some style rules
-			L.geoJson(data, {
+			var dataLayer = L.geoJson(data, {
 				style: function(feature) {
 					return {
 						color: '#dddddd',
@@ -242,11 +244,57 @@
 					};
 				}
 			}).addTo(map);
-			console.log(data);
+			console.log(dataLayer);
+			dataLayer.addTo(map)
+			drawMap(dataLayer);
 		});
 
 
-		tiles.addTo(map);
+		function drawMap(dataLayer) {
+			// we now have access to dataLayer here!
+
+			dataLayer.eachLayer(function(layer) {
+
+				// var props = layer.feature.properties;
+				//
+				// layer.setStyle({
+				// 	fillColor: getColor(props.class_string)
+				// });
+
+				// create variable for tooltip
+				var toolTipInfo = "<b>" +
+					// "Rapid Name:  " +
+					layer.feature.properties.name +
+					"</b>" +
+					"<br>" +
+					"Class" +
+					":  " +
+					layer.feature.properties.class_string;
+
+				layer.bindPopup(toolTipInfo);
+			});
+
+		}
+		//   drawLegend(breaks);
+		//
+		// }
+
+		function getColor(d) {
+			if (d = "0") {
+        return '#f1eef6';
+      } else if (d = "I") {
+        return '#bdc9e1';
+      } else if (d = "II") {
+        return '#74a9cf';
+      } else if (d = "III") {
+        return '#2b8cbe'
+      } else if (d = "III+") {
+        return '#045a8d'
+      } else if (d = "IV") {
+        return '#045a8d'
+			}
+    } // end getColor
+
 	</script>
 </body>
 
