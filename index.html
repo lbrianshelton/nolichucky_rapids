@@ -23,10 +23,10 @@
 		body {
 			margin: 0;
 			padding: 0;
-			background: #e3e3e6;
+			background: #EBE8D0;
 			font-family: 'Lato', sans-serif;
 			font-weight: 300;
-			color: #3d3d3d;
+			color: #31302E;
 			font-size: 100%;
 			/* 16px is default browser size */
 
@@ -51,7 +51,7 @@
 
 		h2 {
 			font-weight: 300;
-			color: #63666a;
+			color: #31302E;
 			font-size: 2.2em;
 			letter-spacing: .06em;
 			font-style: italic;
@@ -71,7 +71,7 @@
 		}
 
 		a {
-			color: #004A8B;
+			color: #1B5156;
 			font-weight: 400;
 			text-decoration: none;
 		}
@@ -84,7 +84,7 @@
 			padding: 0px 20px 4px 20px;
 			font-size: 1.1em;
 			line-height: 1.2em;
-			color: #63666a;
+			color: #31302E;
 		}
 
 		li {
@@ -95,7 +95,7 @@
 			margin: 20px 0;
 			border: 0;
 			height: 1px;
-			background: #63666a;
+			background: #D4D4BF;
 
 		}
 
@@ -231,14 +231,24 @@
 
 		tiles.addTo(map);
 
+		var waterfallIcon = L.icon({
+			iconUrl: 'graphics/waterfall-15-blue.svg',
+			iconSize: [25, 25]
+		});
+
 		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
 			// the data loaded from the file is accessible here within this function scope!
 			// create GeoJson layer and apply some style rules
 			var dataLayer = L.geoJson(data, {
-				pointToLayer: function(f, ll) {
-					console.log(f, ll);
-					return L.circle(ll, 2);
+				pointToLayer: function(feature, latlng) {
+					return L.marker(latlng, {
+						icon: waterfallIcon
+					});
 				}
+
+				// pointToLayer: function(f, ll) {
+				// 	return L.circle(ll, 2);
+				// }
 
 				// style: function(feature) {
 				// 	return {
