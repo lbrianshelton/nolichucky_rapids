@@ -240,33 +240,33 @@
 			iconSize: [25, 25]
 		});
 
+		var startIcon = L.icon({
+			iconUrl: 'graphics/start-marker-15.svg',
+			iconSize: [25, 25]
+		});
+
+
 		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
 			// the data loaded from the file is accessible here within this function scope!
 			// create GeoJson layer and apply some style rules
 			var dataLayer = L.geoJson(data, {
 				pointToLayer: function(feature, latlng) {
+					if (feature.properties.name["Nolichucky Gorge Put-in"]) {
+						var icon = windIcon;
+					} else if (feature.properties.name["Nolichucky Gorge Take-out"]) {
+						var icon = startIcon;
+					}
 					return L.marker(latlng, {
 						icon: waterfallIcon
 					});
 				}
 
-				// pointToLayer: function(f, ll) {
-				// 	return L.circle(ll, 2);
-				// }
-
-				// style: function(feature) {
-				// 	return {
-				// 		color: '#dddddd',
-				// 		weight: 1,
-				// 		fillOpacity: 1,
-				// 		fillColor: '#1f78b4'
-				// 	};
-				// }
 			}).addTo(map);
 			console.log(dataLayer);
 			// dataLayer.addTo(map)
 			drawMap(dataLayer);
 		});
+
 
 
 		function drawMap(dataLayer) {
