@@ -245,20 +245,25 @@
 			iconSize: [25, 25]
 		});
 
+		var endIcon = L.icon({
+			iconUrl: 'graphics/end-marker-15.svg',
+			iconSize: [25, 25]
+		});
 
 		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
 			// the data loaded from the file is accessible here within this function scope!
 			// create GeoJson layer and apply some style rules
 			var dataLayer = L.geoJson(data, {
 				pointToLayer: function(feature, latlng) {
-					if (feature.properties.name["Nolichucky Gorge Put-in"]) {
-						var icon = windIcon;
-					} else if (feature.properties.name["Nolichucky Gorge Take-out"]) {
-						var icon = startIcon;
+					if (feature.properties.NAME["Nolichucky Gorge Put-in"]) {
+						var mapIcon = startIcon;
+					} else if (feature.properties.NAME["Nolichucky Gorge Take-out"]) {
+						var mapIcon = endIcon;
 					}
 					return L.marker(latlng, {
-						icon: waterfallIcon
+						icon: mapIcon
 					});
+
 				}
 
 			}).addTo(map);
