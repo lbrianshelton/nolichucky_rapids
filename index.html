@@ -235,17 +235,22 @@
 			// the data loaded from the file is accessible here within this function scope!
 			// create GeoJson layer and apply some style rules
 			var dataLayer = L.geoJson(data, {
-				style: function(feature) {
-					return {
-						color: '#dddddd',
-						weight: 1,
-						fillOpacity: 1,
-						fillColor: '#1f78b4'
-					};
+				pointToLayer: function(f, ll) {
+					console.log(f, ll);
+					return L.circle(ll, 2);
 				}
+
+				// style: function(feature) {
+				// 	return {
+				// 		color: '#dddddd',
+				// 		weight: 1,
+				// 		fillOpacity: 1,
+				// 		fillColor: '#1f78b4'
+				// 	};
+				// }
 			}).addTo(map);
 			console.log(dataLayer);
-			dataLayer.addTo(map)
+			// dataLayer.addTo(map)
 			drawMap(dataLayer);
 		});
 
@@ -281,20 +286,19 @@
 
 		function getColor(d) {
 			if (d = "0") {
-        return '#f1eef6';
-      } else if (d = "I") {
-        return '#bdc9e1';
-      } else if (d = "II") {
-        return '#74a9cf';
-      } else if (d = "III") {
-        return '#2b8cbe'
-      } else if (d = "III+") {
-        return '#045a8d'
-      } else if (d = "IV") {
-        return '#045a8d'
+				return '#f1eef6';
+			} else if (d = "I") {
+				return '#bdc9e1';
+			} else if (d = "II") {
+				return '#74a9cf';
+			} else if (d = "III") {
+				return '#2b8cbe'
+			} else if (d = "III+") {
+				return '#045a8d'
+			} else if (d = "IV") {
+				return '#045a8d'
 			}
-    } // end getColor
-
+		} // end getColor
 	</script>
 </body>
 
