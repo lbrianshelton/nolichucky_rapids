@@ -139,6 +139,19 @@
 				width: 100%;
 			}
 		}
+
+		/* Modify Leaflet default popup style */
+		.leaflet-popup-content h3 {
+			font-family: "Patrick Hand SC", cursive;
+			font-size: 1.3em;
+			margin-bottom: 6px;
+		}
+
+		.leaflet-popup-content p {
+			margin: 3px 0 6px;
+			font-family: "Roboto", sans-serif;
+			font-size: 1.1em;
+		}
 	</style>
 </head>
 
@@ -213,7 +226,7 @@
 		// map options
 		var options = {
 			center: [36.086222, -82.393149],
-			zoom: 13,
+			zoom: 13.2,
 			zoomSnap: .1
 		}
 
@@ -271,10 +284,9 @@
 					return L.marker(latlng, {
 						icon: waterfallIcon
 					});
-
 				}
-
 			}).addTo(map);
+
 			// dataLayer.addTo(map)
 			drawMap(dataLayer);
 		});
@@ -295,16 +307,27 @@
 				// };
 
 				// create Popup
-				var popupInfo = "<b>" +
+				var popupInfo = "<h3>" +
 					// "Rapid Name:  " +
 					layer.feature.properties.name +
-					"</b>" +
-					"<br>" +
+					"</h3>" +
+					"<p>" +
 					"Class" +
 					":  " +
-					layer.feature.properties.class_string;
+					layer.feature.properties.class_string +
+					"</p>";
 
 				layer.bindPopup(popupInfo);
+
+				// Popup opens and closes when mousing over icon
+				layer.on("mouseover", function() {
+					this.openPopup();
+				});
+				layer.on("mouseout", function() {
+					this.closePopup();
+				});
+
+
 			});
 
 		}
