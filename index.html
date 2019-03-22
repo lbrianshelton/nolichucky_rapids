@@ -183,14 +183,6 @@
 					EPSG:4326.
 				</p>
 
-				<hr>
-				<p><b>Authored by: Brian Shelton</b></p>
-				<ul>
-					<li>See my projects on GitHub: <a href="https://github.com/lbrianshelton">lbrianshelton</a></li>
-					<li>Follow me on twitter: <a href="https://twitter.com/lbrianshelton">@lbrianshelton</a></li>
-				</ul>
-
-
 			</div>
 			<div class="column">
 				<img class="max-image-width" src="https://onncg8dr7k-flywheel.netdna-ssl.com/wp-content/uploads/2018/12/autumncolors.gorge_.les_.jpg" title="Rafting the Nolichukcy">
@@ -199,13 +191,21 @@
 				</div>
 				<img class="max-image-width" src="https://www.americanwhitewater.org/photos/archive/medium/4312.jpg" title="Quarter Mile Rapid">
 				<div class="linkbox">
-					Quarter Mile rapid | Photo by: <a href="https://www.americanwhitewater.org/content/River/detail/id/1766">American Whitewater</a>
+					Kayakers on the Quarter Mile rapid | Photo by: <a href="https://www.americanwhitewater.org/content/River/detail/id/1766">American Whitewater</a>
 				</div>
 
 			</div>
 		</div>
 	</section>
+
 	<footer>
+		<hr>
+		<p><b>Authored by: Brian Shelton</b></p>
+		<ul>
+			<li>See my projects on GitHub: <a href="https://github.com/lbrianshelton">lbrianshelton</a></li>
+			<li>Follow me on twitter: <a href="https://twitter.com/lbrianshelton">@lbrianshelton</a></li>
+		</ul>
+
 		<hr>
 
 		<a href="https://newmapsplus.github.io">
@@ -274,37 +274,39 @@
 		// add GeoJSON layer to map
 		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
 			// create GeoJson layer and apply some style rules
-			var dataLayer = L.geoJson(data, {
-				pointToLayer: function(feature, latlng) {
-					// if (feature.properties.NAME["Nolichucky Gorge Put-in"]) {
-					// 	var mapIcon = startIcon;
-					// } else if (feature.properties.NAME["Nolichucky Gorge Take-out"]) {
-					// 	var mapIcon = endIcon;
-					// }
-					return L.marker(latlng, {
-						icon: waterfallIcon
-					});
-				}
-			}).addTo(map);
 
-			// dataLayer.addTo(map)
+			// if (rapidsLayer.responseJSON.features[0].properties.name) {
+			//
+			// 	var dataLayer = L.geoJson(data, {
+			// 		pointToLayer: function(feature, latlng) {
+			// 			return L.marker(latlng, {
+			// 				icon: startIcon
+			// 			});
+			// 		}
+			// 	}).addTo(map);
+			//
+			// } else {
+			//
+				var dataLayer = L.geoJson(data, {
+					pointToLayer: function(feature, latlng) {
+						return L.marker(latlng, {
+							icon: waterfallIcon
+						});
+					}
+				}).addTo(map);
+			// }
+
+			// console.log(rapidsLayer.responseJSON.features[0].properties.name)
+
 			drawMap(dataLayer);
 		});
 
+		// console.log(rapidsLayer.responseJSON.features[0].properties.name)
 
 		// drawMap function
 		function drawMap(dataLayer) {
 
 			dataLayer.eachLayer(function(layer) {
-
-				// layer.on('mouseover', function(e)) {
-				// 	e.target.setStyle(
-				// 		var waterfallIcon = L.icon({
-				// 			iconUrl: 'graphics/waterfall-15-blue.svg',
-				// 			iconSize: [25, 25]
-				// 		});
-				// 	)
-				// };
 
 				// create Popup
 				var popupInfo = "<h3>" +
@@ -327,13 +329,9 @@
 					this.closePopup();
 				});
 
-
 			});
 
 		}
-		//   drawLegend(breaks);
-		//
-		// }
 	</script>
 </body>
 
