@@ -14,14 +14,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 	<style>
-		/*
-			UKy Colors:
-            #c7c9c8 light gray
-            #63666a dark gray
-            #15397f dark blue
-            #009bda light blue
-            #0033a0 official blue
-        */
 		body {
 			margin: 0;
 			padding: 0;
@@ -44,12 +36,10 @@
 		h1 {
 			font-family: 'Patrick Hand SC', cursive;
 			font-weight: 900;
-			font-size: 2.8em;
-			/* font-style: italic; */
+			font-size: 3.2em;
 			/* The em unit. 3x the current size */
 			letter-spacing: .02em;
 			margin: 5px 0;
-			/* text-transform: uppercase; */
 		}
 
 		h2 {
@@ -164,11 +154,23 @@
 			<div class="first-column">
 				<h2>Rapids along the Nolichucky River run</h2>
 				<p>
-					"I make maps like other cartographers."
-					(<a href="https://en.wikipedia.org/wiki/List_of_cartographers">Wikipedia list of cartographers.</a>)
+					Running between West North Carolina and East Tennessee, the Nolichucky River cuts a deep gorge through the Blue Ridge Mountains. The 8 to 9 mile portion of the Nolichucky near Erwin, TN provides one of the most techinical sections of
+					whitewater paddling in the the southern US.
+				</p>
+				<p>
+					This map identifies the 14 major rapids along the whitewater portion of the Nolichucky. Rapids are commonly classified using the International Scale of River Difficulty, which classifies rapids into six groups: class I being the safest and
+					class VI being the most dangerous. Whitewater up to class IV can be found on the Nolichucky, with extreme variations in intensity depending on water levels.
+				</p>
+				<p>
+					Clicking the rapid icons will identify the rapids and their classifications. Paddlers of all levels can use maps like this to understand the difficulty of the Nolichucky, one of the many steps in planning a successful day on the river.
+				</p>
+				<p>
+					Data for this map was prepared using QGIS 3.4.4 on macOS 10. Point data captured from <a href="http://www.awetstate.com/NolichuckyG.html">A Wet State</a> and <a href="https://www.google.com/maps">Google Maps</a>. Detailed river data provided
+					by <a href="https://www.americanwhitewater.org/content/River/detail/id/176">American Whitewater</a>. Basemaps provided by <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>. Coordinate reference system: WGS84, EPSG:4326.
 				</p>
 
-				<p><b>Social links</b></p>
+				<hr>
+				<p><b>Authored by: Brian Shelton</b></p>
 				<ul>
 					<li>See my projects on GitHub: <a href="https://github.com/lbrianshelton">lbrianshelton</a></li>
 					<li>Follow me on twitter: <a href="https://twitter.com/lbrianshelton">@lbrianshelton</a></li>
@@ -177,10 +179,15 @@
 
 			</div>
 			<div class="column">
-				<img class="max-image-width" src="https://farm2.staticflickr.com/1816/28917431097_5bb5cadb70_h.jpg" title="Electricity and bubbles in a Lexington sunset">
+				<img class="max-image-width" src="https://onncg8dr7k-flywheel.netdna-ssl.com/wp-content/uploads/2018/12/autumncolors.gorge_.les_.jpg" title="Rafting the Nolichukcy">
 				<div class="linkbox">
-					Electricity and bubbles in a Lexington sunset
+					Rafting the Nolichucky | Photo by: <a href="https://www.blueridgeoutdoors.com/paddling/this-is-the-noli/">Blue Ridge Outdoors</a>
 				</div>
+				<img class="max-image-width" src="https://www.americanwhitewater.org/photos/archive/medium/4312.jpg" title="Quarter Mile Rapid">
+				<div class="linkbox">
+					Quarter Mile rapid | Photo by: <a href="https://www.americanwhitewater.org/content/River/detail/id/1766">American Whitewater</a>
+				</div>
+
 			</div>
 		</div>
 	</section>
@@ -234,6 +241,7 @@
 
 		tiles.addTo(map);
 
+		// declare variables for SVGs
 		var waterfallIcon = L.icon({
 			iconUrl: 'graphics/waterfall-15-blue.svg',
 			iconSize: [25, 25]
@@ -249,43 +257,36 @@
 			iconSize: [25, 25]
 		});
 
+		// add GeoJSON layer to map
 		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
 			// the data loaded from the file is accessible here within this function scope!
 			// create GeoJson layer and apply some style rules
 			var dataLayer = L.geoJson(data, {
 				pointToLayer: function(feature, latlng) {
-					if (feature.properties.NAME["Nolichucky Gorge Put-in"]) {
-						var mapIcon = startIcon;
-					} else if (feature.properties.NAME["Nolichucky Gorge Take-out"]) {
-						var mapIcon = endIcon;
-					}
+					// if (feature.properties.NAME["Nolichucky Gorge Put-in"]) {
+					// 	var mapIcon = startIcon;
+					// } else if (feature.properties.NAME["Nolichucky Gorge Take-out"]) {
+					// 	var mapIcon = endIcon;
+					// }
 					return L.marker(latlng, {
-						icon: mapIcon
+						icon: waterfallIcon
 					});
 
 				}
 
 			}).addTo(map);
-			console.log(dataLayer);
 			// dataLayer.addTo(map)
 			drawMap(dataLayer);
 		});
 
 
-
+		// drawMap function
 		function drawMap(dataLayer) {
-			// we now have access to dataLayer here!
 
 			dataLayer.eachLayer(function(layer) {
 
-				// var props = layer.feature.properties;
-				//
-				// layer.setStyle({
-				// 	fillColor: getColor(props.class_string)
-				// });
-
-				// create variable for tooltip
-				var toolTipInfo = "<b>" +
+				// create Popup
+				var popupInfo = "<b>" +
 					// "Rapid Name:  " +
 					layer.feature.properties.name +
 					"</b>" +
@@ -294,29 +295,13 @@
 					":  " +
 					layer.feature.properties.class_string;
 
-				layer.bindPopup(toolTipInfo);
+				layer.bindPopup(popupInfo);
 			});
 
 		}
 		//   drawLegend(breaks);
 		//
 		// }
-
-		function getColor(d) {
-			if (d = "0") {
-				return '#f1eef6';
-			} else if (d = "I") {
-				return '#bdc9e1';
-			} else if (d = "II") {
-				return '#74a9cf';
-			} else if (d = "III") {
-				return '#2b8cbe'
-			} else if (d = "III+") {
-				return '#045a8d'
-			} else if (d = "IV") {
-				return '#045a8d'
-			}
-		} // end getColor
 	</script>
 </body>
 
