@@ -65,7 +65,7 @@
 		}
 
 		a {
-			color: #1B5156;
+			color: #1A6340;
 			font-weight: 400;
 			text-decoration: none;
 		}
@@ -275,6 +275,8 @@
 		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
 			// create GeoJson layer and apply some style rules
 
+			// **** conditional statement for marker icons ****
+
 			// if (rapidsLayer.responseJSON.features[0].properties.name) {
 			//
 			// 	var dataLayer = L.geoJson(data, {
@@ -287,13 +289,13 @@
 			//
 			// } else {
 			//
-				var dataLayer = L.geoJson(data, {
-					pointToLayer: function(feature, latlng) {
-						return L.marker(latlng, {
-							icon: waterfallIcon
-						});
-					}
-				}).addTo(map);
+			var dataLayer = L.geoJson(data, {
+				pointToLayer: function(feature, latlng) {
+					return L.marker(latlng, {
+						icon: waterfallIcon
+					});
+				}
+			}).addTo(map);
 			// }
 
 			// console.log(rapidsLayer.responseJSON.features[0].properties.name)
