@@ -260,7 +260,6 @@
 
 		// add GeoJSON layer to map
 		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
-			// the data loaded from the file is accessible here within this function scope!
 			// create GeoJson layer and apply some style rules
 			var dataLayer = L.geoJson(data, {
 				pointToLayer: function(feature, latlng) {
