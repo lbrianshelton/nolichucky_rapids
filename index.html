@@ -272,67 +272,92 @@
 
 		// add GeoJSON layer to map
 		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
-			// create GeoJson layer and apply some style rules
+					// create GeoJson layer and apply some style rules
 
-			// **** conditional statement for marker icons ****
+					// **** conditional statement for choosing marker icons ****
+					for (var key in rapidsLayer.responseJSON.features) {
+						if (rapidsLayer.responseJSON.features[key].properties.name = "Nolichucky Gorge Put-in") {
 
-			// if (rapidsLayer.responseJSON.features[0].properties.name) {
-			//
-			// 	var dataLayer = L.geoJson(data, {
-			// 		pointToLayer: function(feature, latlng) {
-			// 			return L.marker(latlng, {
-			// 				icon: startIcon
-			// 			});
-			// 		}
-			// 	}).addTo(map);
-			//
-			// } else {
-			//
-			var dataLayer = L.geoJson(data, {
-				pointToLayer: function(feature, latlng) {
-					return L.marker(latlng, {
-						icon: waterfallIcon
+							var dataLayer = L.geoJson(data, {
+								pointToLayer: function(feature, latlng) {
+									return L.marker(latlng, {
+										icon: startIcon
+									});
+								}
+							}).addTo(map);
+
+						} else if (rapidsLayer.responseJSON.features[key].properties.name = "Nolichucky Gorge Take-out") {
+
+							var dataLayer = L.geoJson(data, {
+								pointToLayer: function(feature, latlng) {
+									return L.marker(latlng, {
+										icon: endIcon
+									});
+								}
+							}).addTo(map);
+
+						} else if (rapidsLayer.responseJSON.features[key].properties.name) {
+
+							var dataLayer = L.geoJson(data, {
+								pointToLayer: function(feature, latlng) {
+									return L.marker(latlng, {
+										icon: waterfallIcon
+									});
+								}
+							}).addTo(map);
+						}
+					}
+
+
+					// working code ******
+					// var dataLayer = L.geoJson(data, {
+					//
+					//
+					// 	pointToLayer: function(feature, latlng) {
+					// 		return L.marker(latlng, {
+					// 			icon: waterfallIcon
+					// 		});
+					// 	}
+					// }).addTo(map);
+					// working code *****
+					// }
+
+					// console.log(rapidsLayer.responseJSON.features[0].properties.name)
+
+					drawMap(dataLayer);
+				});
+
+				// console.log(rapidsLayer.responseJSON.features[0].properties.name)
+
+				// drawMap function
+				function drawMap(dataLayer) {
+
+					dataLayer.eachLayer(function(layer) {
+
+						// create Popup
+						var popupInfo = "<h3>" +
+							// "Rapid Name:  " +
+							layer.feature.properties.name +
+							"</h3>" +
+							"<p>" +
+							"Class" +
+							":  " +
+							layer.feature.properties.class_string +
+							"</p>";
+
+						layer.bindPopup(popupInfo);
+
+						// Popup opens and closes when mousing over icon
+						layer.on("mouseover", function() {
+							this.openPopup();
+						});
+						layer.on("mouseout", function() {
+							this.closePopup();
+						});
+
 					});
+
 				}
-			}).addTo(map);
-			// }
-
-			// console.log(rapidsLayer.responseJSON.features[0].properties.name)
-
-			drawMap(dataLayer);
-		});
-
-		// console.log(rapidsLayer.responseJSON.features[0].properties.name)
-
-		// drawMap function
-		function drawMap(dataLayer) {
-
-			dataLayer.eachLayer(function(layer) {
-
-				// create Popup
-				var popupInfo = "<h3>" +
-					// "Rapid Name:  " +
-					layer.feature.properties.name +
-					"</h3>" +
-					"<p>" +
-					"Class" +
-					":  " +
-					layer.feature.properties.class_string +
-					"</p>";
-
-				layer.bindPopup(popupInfo);
-
-				// Popup opens and closes when mousing over icon
-				layer.on("mouseover", function() {
-					this.openPopup();
-				});
-				layer.on("mouseout", function() {
-					this.closePopup();
-				});
-
-			});
-
-		}
 	</script>
 </body>
 
