@@ -166,31 +166,47 @@
 			<div class="first-column">
 				<h2>Rapids along the Nolichucky River run</h2>
 				<p>
-					Running between West North Carolina and East Tennessee, the Nolichucky River cuts a deep gorge through the Blue Ridge Mountains. The 8 to 9 mile portion of the Nolichucky near Erwin, TN provides one of the most techinical sections of
+					Running between West North Carolina and East Tennessee, the Nolichucky River cuts a deep gorge
+					through the Blue Ridge Mountains. The 8 to 9 mile portion of the Nolichucky near Erwin, TN provides
+					one of the most techinical sections of
 					whitewater paddling in the the southern US.
 				</p>
 				<p>
-					This map identifies the 14 major rapids along the whitewater portion of the Nolichucky. Rapids are commonly classified using the International Scale of River Difficulty, which classifies rapids into six groups: class I being the safest and
-					class VI being the most dangerous. Whitewater up to class IV can be found on the Nolichucky, with extreme variations in intensity depending on water levels.
+					This map identifies the 14 major rapids along the whitewater portion of the Nolichucky. Rapids are
+					commonly classified using the International Scale of River Difficulty, which classifies rapids into
+					six groups: class I being the safest and
+					class VI being the most dangerous. Whitewater up to class IV can be found on the Nolichucky, with
+					extreme variations in intensity depending on water levels.
 				</p>
 				<p>
-					Clicking the rapid icons will identify the rapids and their classifications. Paddlers of all levels can use maps like this to understand the difficulty of the Nolichucky, one of the many steps in planning a successful day on the river.
+					Clicking the rapid icons will identify the rapids and their classifications. Paddlers of all levels
+					can use maps like this to understand the difficulty of the Nolichucky, one of the many steps in
+					planning a successful day on the river.
 				</p>
 				<p>
-					Data for this map was prepared using QGIS 3.4.4 on macOS 10. Point data captured from <a href="http://www.awetstate.com/NolichuckyG.html">A Wet State</a> and <a href="https://www.google.com/maps">Google Maps</a>. Detailed river data provided
-					by <a href="https://www.americanwhitewater.org/content/River/detail/id/176">American Whitewater</a>. Basemaps provided by <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>. Coordinate reference system: WGS84,
+					Data for this map was prepared using QGIS 3.4.4 on macOS 10. Point data captured from <a
+						href="http://www.awetstate.com/NolichuckyG.html">A Wet State</a> and <a
+						href="https://www.google.com/maps">Google Maps</a>. Detailed river data provided
+					by <a href="https://www.americanwhitewater.org/content/River/detail/id/176">American Whitewater</a>.
+					Basemaps provided by <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap
+						contributors</a>. Coordinate reference system: WGS84,
 					EPSG:4326.
 				</p>
 
 			</div>
 			<div class="column">
-				<img class="max-image-width" src="https://onncg8dr7k-flywheel.netdna-ssl.com/wp-content/uploads/2018/12/autumncolors.gorge_.les_.jpg" title="Rafting the Nolichukcy">
+				<img class="max-image-width"
+					src="https://onncg8dr7k-flywheel.netdna-ssl.com/wp-content/uploads/2018/12/autumncolors.gorge_.les_.jpg"
+					title="Rafting the Nolichukcy">
 				<div class="linkbox">
-					Rafting the Nolichucky | Photo by: <a href="https://www.blueridgeoutdoors.com/paddling/this-is-the-noli/">Blue Ridge Outdoors</a>
+					Rafting the Nolichucky | Photo by: <a
+						href="https://www.blueridgeoutdoors.com/paddling/this-is-the-noli/">Blue Ridge Outdoors</a>
 				</div>
-				<img class="max-image-width" src="https://www.americanwhitewater.org/photos/archive/medium/4312.jpg" title="Quarter Mile Rapid">
+				<img class="max-image-width" src="https://www.americanwhitewater.org/photos/archive/medium/4312.jpg"
+					title="Quarter Mile Rapid">
 				<div class="linkbox">
-					Kayakers on the Quarter Mile rapid | Photo by: <a href="https://www.americanwhitewater.org/content/River/detail/id/1766">American Whitewater</a>
+					Kayakers on the Quarter Mile rapid | Photo by: <a
+						href="https://www.americanwhitewater.org/content/River/detail/id/1766">American Whitewater</a>
 				</div>
 
 			</div>
@@ -208,16 +224,18 @@
 		<hr>
 
 		<a href="https://newmapsplus.github.io">
-			<img src="https://newmapsplus.github.io/assets/graphics/logo-2018-nmp-75px-h-gray.png" alt="University of Kentucky Geography">
+			<img src="https://newmapsplus.github.io/assets/graphics/logo-2018-nmp-75px-h-gray.png"
+				alt="University of Kentucky Geography">
 		</a>
 
 		<a href="https://uky-gis.github.io">
-			<img src="https://newmapsplus.github.io/assets/graphics/logo-2018-geography-75px-h.png" alt="University of Kentucky Geography">
+			<img src="https://newmapsplus.github.io/assets/graphics/logo-2018-geography-75px-h.png"
+				alt="University of Kentucky Geography">
 		</a>
 
 	</footer>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.js"></script> -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
 
@@ -240,7 +258,7 @@
 		var basemap_options = {
 			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
 			subdomains: 'abcd',
-			maxZoom: 19
+			maxZoom: 18
 		};
 
 		// request some basemap tiles and add to the map
@@ -248,7 +266,7 @@
 			attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 			subdomains: 'abcd',
 			minZoom: 0,
-			maxZoom: 18,
+			maxZoom: 19,
 			ext: 'png'
 		});
 
@@ -270,94 +288,130 @@
 			iconSize: [25, 25]
 		});
 
+		var waterfallIcon45 = L.icon ({
+
+			iconUrl: 'graphics/waterfall-class-4_5.svg',
+			iconSize: [25, 25]
+
+		})
+
 		// add GeoJSON layer to map
-		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
-					// create GeoJson layer and apply some style rules
+		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function (data) {
+			// create GeoJson layer and apply some style rules
 
-					// **** conditional statement for choosing marker icons ****
-					for (var key in rapidsLayer.responseJSON.features) {
-						if (rapidsLayer.responseJSON.features[key].properties.name = "Nolichucky Gorge Put-in") {
+			// **** conditional statement for choosing marker icons ****
+			// for (var key in rapidsLayer.responseJSON.features) { console.log(rapidsLayer.responseJSON.features[key].properties.name)
+			// 	if (rapidsLayer.responseJSON.features[key].properties.name == "Nolichucky Gorge Put-in") {
 
-							var dataLayer = L.geoJson(data, {
-								pointToLayer: function(feature, latlng) {
-									return L.marker(latlng, {
-										icon: startIcon
-									});
-								}
-							}).addTo(map);
+			// 		var icon = startIcon
 
-						} else if (rapidsLayer.responseJSON.features[key].properties.name = "Nolichucky Gorge Take-out") {
 
-							var dataLayer = L.geoJson(data, {
-								pointToLayer: function(feature, latlng) {
-									return L.marker(latlng, {
-										icon: endIcon
-									});
-								}
-							}).addTo(map);
+			// 	} else if (rapidsLayer.responseJSON.features[key].properties.name == "Nolichucky Gorge Take-out") {
 
-						} else if (rapidsLayer.responseJSON.features[key].properties.name) {
 
-							var dataLayer = L.geoJson(data, {
-								pointToLayer: function(feature, latlng) {
-									return L.marker(latlng, {
-										icon: waterfallIcon
-									});
-								}
-							}).addTo(map);
-						}
+			// 					var icon = endIcon
+
+
+			// 	} else {
+			// 		var icon = waterfallIcon
+
+			// }
+
+			var dataLayer = L.geoJson(data, {
+				pointToLayer: function (feature, latlng) {
+
+					if (feature.properties.name == "Nolichucky Gorge Put-in") {
+						var icon = startIcon
+					} else if (feature.properties.name == "Nolichucky Gorge Take-out") {
+						var icon = endIcon
+					} else if (feature.properties.class_number  >= 4) {
+						var icon = waterfallIcon45
+					} else {
+						var icon = waterfallIcon
 					}
+					return L.marker(latlng, {
+						icon: icon
+					});
+				},
 
+				onEachFeature: function (feature, layer) {
 
-					// working code ******
-					// var dataLayer = L.geoJson(data, {
-					//
-					//
-					// 	pointToLayer: function(feature, latlng) {
-					// 		return L.marker(latlng, {
-					// 			icon: waterfallIcon
-					// 		});
-					// 	}
-					// }).addTo(map);
-					// working code *****
-					// }
+					// create Popup 
+					// TWO VERISONS
+				var popupInfo = "<h3>" +
+					feature.properties.name +
+					"</h3>Class:  " +
+					feature.properties.class_string
 
-					// console.log(rapidsLayer.responseJSON.features[0].properties.name)
+				var popupTemplate = `<h3>${feature.properties.name}</h3>
+									Class: ${feature.properties.class_string}`
 
-					drawMap(dataLayer);
+				layer.bindPopup(popupTemplate);
+
+				// Popup opens and closes when mousing over icon
+				layer.on("mouseover", function () {
+					this.openPopup();
+				});
+				layer.on("mouseout", function () {
+					this.closePopup();
 				});
 
-				// console.log(rapidsLayer.responseJSON.features[0].properties.name)
-
-				// drawMap function
-				function drawMap(dataLayer) {
-
-					dataLayer.eachLayer(function(layer) {
-
-						// create Popup
-						var popupInfo = "<h3>" +
-							// "Rapid Name:  " +
-							layer.feature.properties.name +
-							"</h3>" +
-							"<p>" +
-							"Class" +
-							":  " +
-							layer.feature.properties.class_string +
-							"</p>";
-
-						layer.bindPopup(popupInfo);
-
-						// Popup opens and closes when mousing over icon
-						layer.on("mouseover", function() {
-							this.openPopup();
-						});
-						layer.on("mouseout", function() {
-							this.closePopup();
-						});
-
-					});
-
 				}
+			}).addTo(map); 
+
+			// drawMap(dataLayer);
+		});
+
+
+		// working code ******
+		// var dataLayer = L.geoJson(data, {
+		//
+		//
+		// 	pointToLayer: function(feature, latlng) {
+		// 		return L.marker(latlng, {
+		// 			icon: waterfallIcon
+		// 		});
+		// 	}
+		// }).addTo(map);
+		// working code *****
+		// }
+
+		// console.log(rapidsLayer.responseJSON.features[0].properties.name)
+
+
+		// });
+
+		// console.log(rapidsLayer.responseJSON.features[0].properties.name)
+
+		// drawMap function
+		function drawMap(dataLayer) {
+
+			dataLayer.eachLayer(function (layer) {
+
+				// create Popup
+				var popupInfo = "<h3>" +
+					// "Rapid Name:  " +
+					layer.feature.properties.name +
+					"</h3>" +
+					"<p>" +
+					"Class" +
+					":  " +
+					layer.feature.properties.class_string +
+					"</p>";
+
+				layer.bindPopup(popupInfo);
+
+				// Popup opens and closes when mousing over icon
+				layer.on("mouseover", function () {
+					this.openPopup();
+				});
+				layer.on("mouseout", function () {
+					this.closePopup();
+				});
+
+			});
+
+		}
 	</script>
 </body>
 
