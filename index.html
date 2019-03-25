@@ -336,18 +336,17 @@
 
 				onEachFeature: function (feature, layer) {
 
-					// create Popup
+					// create Popup 
+					// TWO VERISONS
 				var popupInfo = "<h3>" +
-					// "Rapid Name:  " +
 					feature.properties.name +
-					"</h3>" +
-					"<p>" +
-					"Class" +
-					":  " +
-					feature.properties.class_string +
-					"</p>";
+					"</h3>Class:  " +
+					feature.properties.class_string
 
-				layer.bindPopup(popupInfo);
+				var popupTemplate = `<h3>${feature.properties.name}</h3>
+									Class: ${feature.properties.class_string}`
+
+				layer.bindPopup(popupTemplate);
 
 				// Popup opens and closes when mousing over icon
 				layer.on("mouseover", function () {
