@@ -43,7 +43,6 @@
 
 		h2 {
 			font-family: 'Patrick Hand SC', cursive;
-
 			font-weight: 300;
 			color: #31302E;
 			font-size: 2.2em;
@@ -151,6 +150,17 @@
 			font-family: "Roboto", sans-serif;
 			font-size: 1.1em;
 		}
+
+		/* legend styling */
+		.legend {
+			padding: 6px 8px;
+			font-size: 1em;
+			font-weight: 600;
+			font-family: "Roboto", sans-serif;
+			background: rgba(207,207, 207, 0.8);
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+		}
 	</style>
 </head>
 
@@ -184,9 +194,7 @@
 					planning a successful day on the river.
 				</p>
 				<p>
-					Data for this map was prepared using QGIS 3.4.4 on macOS 10. Point data captured from <a
-						href="http://www.awetstate.com/NolichuckyG.html">A Wet State</a> and <a
-						href="https://www.google.com/maps">Google Maps</a>. Detailed river data provided
+					Data for this map was prepared using QGIS 3.4.4 on macOS 10. Point data captured from <a href="http://www.awetstate.com/NolichuckyG.html">A Wet State</a> and <a href="https://www.google.com/maps">Google Maps</a>. Detailed river data provided
 					by <a href="https://www.americanwhitewater.org/content/River/detail/id/176">American Whitewater</a>.
 					Basemaps provided by <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap
 						contributors</a>. Coordinate reference system: WGS84,
@@ -195,18 +203,13 @@
 
 			</div>
 			<div class="column">
-				<img class="max-image-width"
-					src="https://onncg8dr7k-flywheel.netdna-ssl.com/wp-content/uploads/2018/12/autumncolors.gorge_.les_.jpg"
-					title="Rafting the Nolichukcy">
+				<img class="max-image-width" src="https://onncg8dr7k-flywheel.netdna-ssl.com/wp-content/uploads/2018/12/autumncolors.gorge_.les_.jpg" title="Rafting the Nolichukcy">
 				<div class="linkbox">
-					Rafting the Nolichucky | Photo by: <a
-						href="https://www.blueridgeoutdoors.com/paddling/this-is-the-noli/">Blue Ridge Outdoors</a>
+					Rafting the Nolichucky | Photo by: <a href="https://www.blueridgeoutdoors.com/paddling/this-is-the-noli/">Blue Ridge Outdoors</a>
 				</div>
-				<img class="max-image-width" src="https://www.americanwhitewater.org/photos/archive/medium/4312.jpg"
-					title="Quarter Mile Rapid">
+				<img class="max-image-width" src="https://www.americanwhitewater.org/photos/archive/medium/4312.jpg" title="Quarter Mile Rapid">
 				<div class="linkbox">
-					Kayakers on the Quarter Mile rapid | Photo by: <a
-						href="https://www.americanwhitewater.org/content/River/detail/id/1766">American Whitewater</a>
+					Kayakers on the Quarter Mile rapid | Photo by: <a href="https://www.americanwhitewater.org/content/River/detail/id/1766">American Whitewater</a>
 				</div>
 
 			</div>
@@ -224,13 +227,11 @@
 		<hr>
 
 		<a href="https://newmapsplus.github.io">
-			<img src="https://newmapsplus.github.io/assets/graphics/logo-2018-nmp-75px-h-gray.png"
-				alt="University of Kentucky Geography">
+			<img src="https://newmapsplus.github.io/assets/graphics/logo-2018-nmp-75px-h-gray.png" alt="University of Kentucky Geography">
 		</a>
 
 		<a href="https://uky-gis.github.io">
-			<img src="https://newmapsplus.github.io/assets/graphics/logo-2018-geography-75px-h.png"
-				alt="University of Kentucky Geography">
+			<img src="https://newmapsplus.github.io/assets/graphics/logo-2018-geography-75px-h.png" alt="University of Kentucky Geography">
 		</a>
 
 	</footer>
@@ -273,11 +274,6 @@
 		tiles.addTo(map);
 
 		// declare variables for SVGs
-		var waterfallIcon = L.icon({
-			iconUrl: 'graphics/waterfall-15-blue.svg',
-			iconSize: [25, 25]
-		});
-
 		var startIcon = L.icon({
 			iconUrl: 'graphics/start-marker-15.svg',
 			iconSize: [25, 25]
@@ -288,43 +284,76 @@
 			iconSize: [25, 25]
 		});
 
-		var waterfallIcon4 = L.icon ({
+		var waterfallIcon4 = L.icon({
 			iconUrl: 'graphics/waterfall-class-4.svg',
 			iconSize: [25, 25]
 		});
 
-		var waterfallIcon3 = L.icon ({
+		var waterfallIcon3 = L.icon({
 			iconUrl: 'graphics/waterfall-class-3.svg',
 			iconSize: [25, 25]
 		});
 
-		var waterfallIcon2 = L.icon ({
+		var waterfallIcon2 = L.icon({
 			iconUrl: 'graphics/waterfall-class-2.svg',
 			iconSize: [25, 25]
 		});
 
-		var waterfallIcon1 = L.icon ({
+		var waterfallIcon1 = L.icon({
 			iconUrl: 'graphics/waterfall-class-1.svg',
 			iconSize: [25, 25]
 		});
 
 		// add GeoJSON layer to map
-		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function (data) {
+		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function(data) {
 			// create GeoJson layer and apply some style rules
+
+			// add a legend
+			// create the Leaflet control and position
+			var legend = L.control({
+				position: 'topright'
+			});
+			// when it's added to the map
+			legend.onAdd = function() {
+				// create a new DOM div element with a class name of "legend"
+				var div = L.DomUtil.create('div', 'legend');
+				// insert some placeholder text for now
+				div.innerHTML =
+				"Rapids" +
+				"<br>" +
+				'<img src="/graphics/waterfall-class-1.svg">' +
+				" Class I" +
+				"<br>" +
+				'<img src="/graphics/waterfall-class-2.svg">' +
+				" Class II" +
+				"<br>" +
+				'<img src="/graphics/waterfall-class-3.svg">' +
+				" Class III" +
+				"<br>" +
+				'<img src="/graphics/waterfall-class-4.svg">' +
+				" Class IV+"
+				;
+
+				// return the div element
+				return div;
+			};
+			// add the legend to the map
+			legend.addTo(map);
 
 			// conditional statement for choosing marker icons
 			var dataLayer = L.geoJson(data, {
-				pointToLayer: function (feature, latlng) {
+
+				pointToLayer: function(feature, latlng) {
 
 					if (feature.properties.name == "Nolichucky Gorge Put-in") {
 						var icon = startIcon
 					} else if (feature.properties.name == "Nolichucky Gorge Take-out") {
 						var icon = endIcon
-					} else if (feature.properties.class_number  >= 4) {
+					} else if (feature.properties.class_number >= 4) {
 						var icon = waterfallIcon4
-					} else if (feature.properties.class_number  == 3) {
+					} else if (feature.properties.class_number == 3) {
 						var icon = waterfallIcon3
-					} else if (feature.properties.class_number  == 2) {
+					} else if (feature.properties.class_number == 2) {
 						var icon = waterfallIcon2
 					} else {
 						var icon = waterfallIcon1
@@ -334,64 +363,32 @@
 					});
 				},
 
-				onEachFeature: function (feature, layer) {
+				onEachFeature: function(feature, layer) {
 
 					// create Popup
 					// TWO VERISONS
-				var popupInfo = "<h3>" +
-					feature.properties.name +
-					"</h3>Class:  " +
-					feature.properties.class_string
+					var popupInfo = "<h3>" +
+						feature.properties.name +
+						"</h3>Class:  " +
+						feature.properties.class_string
 
-				var popupTemplate = `<h3>${feature.properties.name}</h3>
+					var popupTemplate = `<h3>${feature.properties.name}</h3>
 									Class: ${feature.properties.class_string}`
 
-				layer.bindPopup(popupTemplate);
+					layer.bindPopup(popupTemplate);
 
-				// Popup opens and closes when mousing over icon
-				layer.on("mouseover", function () {
-					this.openPopup();
-				});
-				layer.on("mouseout", function () {
-					this.closePopup();
-				});
-
+					// Popup opens and closes when mousing over icon
+					layer.on("mouseover", function() {
+						this.openPopup();
+					});
+					layer.on("mouseout", function() {
+						this.closePopup();
+					});
 				}
+
 			}).addTo(map);
 
-			// drawMap(dataLayer);
 		});
-
-
-		// drawMap function
-		// function drawMap(dataLayer) {
-		//
-		// 	dataLayer.eachLayer(function (layer) {
-		//
-		// 		// create Popup
-		// 		var popupInfo = "<h3>" +
-		// 			// "Rapid Name:  " +
-		// 			layer.feature.properties.name +
-		// 			"</h3>" +
-		// 			"<p>" +
-		// 			"Class" +
-		// 			":  " +
-		// 			layer.feature.properties.class_string +
-		// 			"</p>";
-		//
-		// 		layer.bindPopup(popupInfo);
-		//
-		// 		// Popup opens and closes when mousing over icon
-		// 		layer.on("mouseover", function () {
-		// 			this.openPopup();
-		// 		});
-		// 		layer.on("mouseout", function () {
-		// 			this.closePopup();
-		// 		});
-		//
-		// 	});
-		//
-		// }
 	</script>
 </body>
 
