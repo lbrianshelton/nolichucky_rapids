@@ -288,35 +288,31 @@
 			iconSize: [25, 25]
 		});
 
-		var waterfallIcon45 = L.icon ({
-
-			iconUrl: 'graphics/waterfall-class-4_5.svg',
+		var waterfallIcon4 = L.icon ({
+			iconUrl: 'graphics/waterfall-class-4.svg',
 			iconSize: [25, 25]
+		});
 
-		})
+		var waterfallIcon3 = L.icon ({
+			iconUrl: 'graphics/waterfall-class-3.svg',
+			iconSize: [25, 25]
+		});
+
+		var waterfallIcon2 = L.icon ({
+			iconUrl: 'graphics/waterfall-class-2.svg',
+			iconSize: [25, 25]
+		});
+
+		var waterfallIcon1 = L.icon ({
+			iconUrl: 'graphics/waterfall-class-1.svg',
+			iconSize: [25, 25]
+		});
 
 		// add GeoJSON layer to map
 		var rapidsLayer = $.getJSON("data/nolichucky_rapids_points.geojson", function (data) {
 			// create GeoJson layer and apply some style rules
 
-			// **** conditional statement for choosing marker icons ****
-			// for (var key in rapidsLayer.responseJSON.features) { console.log(rapidsLayer.responseJSON.features[key].properties.name)
-			// 	if (rapidsLayer.responseJSON.features[key].properties.name == "Nolichucky Gorge Put-in") {
-
-			// 		var icon = startIcon
-
-
-			// 	} else if (rapidsLayer.responseJSON.features[key].properties.name == "Nolichucky Gorge Take-out") {
-
-
-			// 					var icon = endIcon
-
-
-			// 	} else {
-			// 		var icon = waterfallIcon
-
-			// }
-
+			// conditional statement for choosing marker icons
 			var dataLayer = L.geoJson(data, {
 				pointToLayer: function (feature, latlng) {
 
@@ -325,9 +321,13 @@
 					} else if (feature.properties.name == "Nolichucky Gorge Take-out") {
 						var icon = endIcon
 					} else if (feature.properties.class_number  >= 4) {
-						var icon = waterfallIcon45
+						var icon = waterfallIcon4
+					} else if (feature.properties.class_number  == 3) {
+						var icon = waterfallIcon3
+					} else if (feature.properties.class_number  == 2) {
+						var icon = waterfallIcon2
 					} else {
-						var icon = waterfallIcon
+						var icon = waterfallIcon1
 					}
 					return L.marker(latlng, {
 						icon: icon
@@ -363,55 +363,35 @@
 		});
 
 
-		// working code ******
-		// var dataLayer = L.geoJson(data, {
-		//
-		//
-		// 	pointToLayer: function(feature, latlng) {
-		// 		return L.marker(latlng, {
-		// 			icon: waterfallIcon
-		// 		});
-		// 	}
-		// }).addTo(map);
-		// working code *****
-		// }
-
-		// console.log(rapidsLayer.responseJSON.features[0].properties.name)
-
-
-		// });
-
-		// console.log(rapidsLayer.responseJSON.features[0].properties.name)
-
 		// drawMap function
-		function drawMap(dataLayer) {
-
-			dataLayer.eachLayer(function (layer) {
-
-				// create Popup
-				var popupInfo = "<h3>" +
-					// "Rapid Name:  " +
-					layer.feature.properties.name +
-					"</h3>" +
-					"<p>" +
-					"Class" +
-					":  " +
-					layer.feature.properties.class_string +
-					"</p>";
-
-				layer.bindPopup(popupInfo);
-
-				// Popup opens and closes when mousing over icon
-				layer.on("mouseover", function () {
-					this.openPopup();
-				});
-				layer.on("mouseout", function () {
-					this.closePopup();
-				});
-
-			});
-
-		}
+		// function drawMap(dataLayer) {
+		//
+		// 	dataLayer.eachLayer(function (layer) {
+		//
+		// 		// create Popup
+		// 		var popupInfo = "<h3>" +
+		// 			// "Rapid Name:  " +
+		// 			layer.feature.properties.name +
+		// 			"</h3>" +
+		// 			"<p>" +
+		// 			"Class" +
+		// 			":  " +
+		// 			layer.feature.properties.class_string +
+		// 			"</p>";
+		//
+		// 		layer.bindPopup(popupInfo);
+		//
+		// 		// Popup opens and closes when mousing over icon
+		// 		layer.on("mouseover", function () {
+		// 			this.openPopup();
+		// 		});
+		// 		layer.on("mouseout", function () {
+		// 			this.closePopup();
+		// 		});
+		//
+		// 	});
+		//
+		// }
 	</script>
 </body>
 
