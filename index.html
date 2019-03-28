@@ -157,7 +157,7 @@
 			font-size: 1em;
 			font-weight: 600;
 			font-family: "Roboto", sans-serif;
-			background: rgba(207,207, 207, 0.8);
+			background: rgba(207, 207, 207, 0.8);
 			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 			border-radius: 5px;
 		}
@@ -263,12 +263,9 @@
 		};
 
 		// request some basemap tiles and add to the map
-		var tiles = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}', {
-			attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-			subdomains: 'abcd',
-			minZoom: 0,
-			maxZoom: 19,
-			ext: 'png'
+		var tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+			attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
+			maxZoom: 16
 		});
 
 		tiles.addTo(map);
@@ -319,20 +316,19 @@
 				var div = L.DomUtil.create('div', 'legend');
 				// insert some placeholder text for now
 				div.innerHTML =
-				"Rapids" +
-				"<br>" +
-				'<img src="graphics/waterfall-class-1.svg">' +
-				" Class I" +
-				"<br>" +
-				'<img src="graphics/waterfall-class-2.svg">' +
-				" Class II" +
-				"<br>" +
-				'<img src="graphics/waterfall-class-3.svg">' +
-				" Class III" +
-				"<br>" +
-				'<img src="graphics/waterfall-class-4.svg">' +
-				" Class IV+"
-				;
+					"Rapids" +
+					"<br>" +
+					'<img src="graphics/waterfall-class-1.svg">' +
+					" Class I" +
+					"<br>" +
+					'<img src="graphics/waterfall-class-2.svg">' +
+					" Class II" +
+					"<br>" +
+					'<img src="graphics/waterfall-class-3.svg">' +
+					" Class III" +
+					"<br>" +
+					'<img src="graphics/waterfall-class-4.svg">' +
+					" Class IV+";
 
 				// return the div element
 				return div;
